@@ -7,7 +7,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2WebFlux;
 
 @SpringBootApplication
 @EnableSwagger2WebFlux
-@EnableEurekaClient
 public class CustomerApplication {
 
 	public static void main(String[] args) {
