@@ -1,3 +1,5 @@
+server:
+  port: 8082
 spring:
   data:
     mongodb:
@@ -8,7 +10,7 @@ spring:
     name: customer
   cloud:
     config:
-      uri: http://localhost:8080
+      uri: http://localhost:8081
       username: root
       password: p1w1ll0
   boot:
