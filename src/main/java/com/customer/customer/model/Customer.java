@@ -1,15 +1,15 @@
 package com.customer.customer.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+@Data
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
-@Document("customers")
+@Document(collection = "customers")
 public class Customer {
 
     @Id
