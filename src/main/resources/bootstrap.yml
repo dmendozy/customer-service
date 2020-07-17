@@ -1,4 +1,4 @@
-spring:
+sspring:
   application:
     name: customer-service
   cloud:

@@ -13,10 +13,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Customer {
 
     @Id
-    public String id;
+    public String customerId;
     public String firstName;
     public String lastName;
-    public String dni;
+    public String documentType;
+    public String documentNumber;
     public String address;
 
     public Customer(){

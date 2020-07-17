@@ -36,7 +36,7 @@ public class CustomerControllerTest {
 
     @BeforeAll
     public static void setup(){
-        customerMap.put("test",new Customer("1","Danny","Mendoza Yenque","70673131","Ancon"));
+        customerMap.put("test",new Customer("1","Danny","Mendoza Yenque","DNI","70673131","Ancon"));
     }
 
     @Test
@@ -58,27 +58,27 @@ public class CustomerControllerTest {
     @Test
     public void testGetCustomerById(){
         Mockito
-                .when(repository.findById(customerMap.get("test").id))
+                .when(repository.findById(customerMap.get("test").customerId))
                 .thenReturn(Mono.just(customerMap.get("test")));
 
         webClient.get()
-                .uri("/customers/{id}",customerMap.get("test").id)
+                .uri("/customers/{id}",customerMap.get("test").customerId)
                 .accept(MediaType.APPLICATION_JSON)
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(Customer.class)
                 .isEqualTo(customerMap.get("test"));
-        Mockito.verify(repository, Mockito.times(1)).findById(customerMap.get("test").id);
+        Mockito.verify(repository, Mockito.times(1)).findById(customerMap.get("test").customerId);
     }
 
     @Test
     public void testUpdateCustomer(){
         Mockito
-                .when(repository.findById(customerMap.get("test").id))
+                .when(repository.findById(customerMap.get("test").customerId))
                 .thenReturn(Mono.just(customerMap.get("test")));
 
         webClient.put()
-                .uri("/customers/{id}",customerMap.get("test").id)
+                .uri("/customers/{id}",customerMap.get("test").customerId)
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(BodyInserters.fromValue(customerMap.get("test")))
                 .exchange()
@@ -89,17 +89,17 @@ public class CustomerControllerTest {
     @Test
     public void testDeleteCustomer(){
         Mockito
-                .when(repository.deleteById(customerMap.get("test").id))
+                .when(repository.deleteById(customerMap.get("test").customerId))
                 .thenReturn(Mono.empty());
 
         webClient.delete()
-                .uri("/customers/{id}",customerMap.get("test").id)
+                .uri("/customers/{id}",customerMap.get("test").customerId)
                 .accept(MediaType.APPLICATION_JSON)
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(Customer.class)
                 .isEqualTo(null);
-        Mockito.verify(repository, Mockito.times(1)).deleteById(customerMap.get("test").id);
+        Mockito.verify(repository, Mockito.times(1)).deleteById(customerMap.get("test").customerId);
 
     }
 }
