@@ -81,6 +81,12 @@
 			<artifactId>jacoco-maven-plugin</artifactId>
 			<version>0.8.5</version>
 		</dependency>
+		<dependency>
+			<groupId>io.github.resilience4j</groupId>
+			<artifactId>resilience4j-circuitbreaker</artifactId>
+			<version>1.5.0</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -90,6 +96,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<finalName>customer-service</finalName>
 	</build>
 
 </project>
