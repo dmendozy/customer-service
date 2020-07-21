@@ -6,7 +6,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Data
 @Getter
 @Setter
-@Builder
 @Document(collection = "personal")
 public class CustomerPersonal extends Customer {
 
