@@ -1,7 +1,11 @@
 package com.customer.customer.model;
 
+import com.customer.customer.adds.Account;
+import com.customer.customer.adds.Credit;
+import com.customer.customer.adds.Transaction;
 import lombok.*;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
@@ -21,4 +25,11 @@ public class Customer {
     public Customer(){
         super();
     }
+
+    @Transient
+    public Account account;
+    @Transient
+    public Credit credit;
+    @Transient
+    public Transaction transaction;
 }
