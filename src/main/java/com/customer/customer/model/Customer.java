@@ -14,12 +14,8 @@ public class Customer {
 
     @Id
     public String customerId;
-    public String firstName;
-    public String lastName;
-    public String documentType;
-    public String documentNumber;
     public String email;
-    public String profileCustomer;
+    public String phone;
     public String address;
 
     public Customer(){
