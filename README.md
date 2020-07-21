@@ -27,5 +27,5 @@ docker run -p 8082:8082 --name customer-service customer-service
 
 # Architecture
 
-
+![Architecture](https://raw.githubusercontent.com/dmendozy/project2-config/master/files/architecture.png)
 
