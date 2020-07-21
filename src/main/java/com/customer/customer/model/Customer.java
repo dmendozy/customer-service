@@ -18,6 +18,8 @@ public class Customer {
     public String lastName;
     public String documentType;
     public String documentNumber;
+    public String email;
+    public String profileCustomer;
     public String address;
 
     public Customer(){
