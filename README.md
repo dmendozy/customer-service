@@ -5,11 +5,11 @@ This project is based on Spring Boot microservices using the reactive stack, rea
 ## Windows
 1. Install [Docker Desktop](https://www.docker.com/products/docker-desktop).
 1. Create an image for MongoDB using the following code
-'docker pull mongo:latest'
+`docker pull mongo:latest`
 1. Create a container for the database
-'docker run -d -p 27017:27017 --name bootcamp-mongodb mongo:latest'
+`docker run -d -p 27017:27017 --name bootcamp-mongodb mongo:latest`
 1. Check
-'docker ps'
+`docker ps`
 
 
 
