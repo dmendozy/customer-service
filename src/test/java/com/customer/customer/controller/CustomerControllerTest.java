@@ -31,12 +31,12 @@ public class CustomerControllerTest {
     @Autowired
     private WebTestClient webClient;
 
-    private static Map<String, Customer> customerMap = new HashMap<>();
+    final private static Map<String, Customer> customerMap = new HashMap<>();
 
 
     @BeforeAll
     public static void setup(){
-        //customerMap.put("test",new Customer("1","Danny","Mendoza Yenque","DNI","70673131","Ancon"));
+        customerMap.put("test",new Customer("1","danny@gmail.com","98989898","Ancon"));
     }
 
     @Test
