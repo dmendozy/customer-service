@@ -1,6 +1,19 @@
 Bootcamp-project2
 ======================
+# Getting Started
 This project is based on Spring Boot microservices using the reactive stack, read more info there https://spring.io/reactive
+
+## Frameworks 
+* Spring Boot
+* Spring Data - Reactive Mongo
+* Webflux
+
+## Setup
+* Java 1.8
+* Maven
+* Mongo
+* Docker
+
 # Building
 ## Windows
 1. Install [Docker Desktop](https://www.docker.com/products/docker-desktop).
