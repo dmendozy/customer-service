@@ -1,6 +1,7 @@
 package com.customer.customer.controller;
 
 import com.customer.customer.adds.Account;
+import com.customer.customer.adds.Credit;
 import com.customer.customer.model.Customer;
 import com.customer.customer.service.CustomerService;
 import com.customer.customer.utils.CustomerMapper;
@@ -11,6 +12,10 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import java.time.Duration;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -49,7 +54,7 @@ public class CustomerController {
         return customerService.delete(customerId);
     }
 
-    @GetMapping("/{id}/withaccounts")
+    @GetMapping("/{id}/accounts")
     public Mono<Customer> findByIdWithAccounts(@PathVariable("id") String id) {
         Flux<Account> accounts = webClientBuilder.build().get().uri("http://account-service/accounts/customer/{customer}",id).retrieve().bodyToFlux(Account.class);
         return accounts
@@ -60,6 +65,16 @@ public class CustomerController {
                 .map(CustomerMapper::map);
     }
 
+    @GetMapping("/{id}/credits")
+    public Mono<Customer> findByIdWithProducts(@PathVariable("id") String id) {
+        Flux<Credit> credits = webClientBuilder.build().get().uri("http://credit-service/credits/customer/{customer}",id).retrieve().bodyToFlux(Credit.class);
+        Mono<Customer> monoCredit = credits.collectList().map(Customer::new);
+        return monoCredit
+                .mergeWith(customerService.getById(id))
+                .collectList()
+                .map(CustomerMapper::map);
+
+    }
 
 
 

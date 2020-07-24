@@ -8,6 +8,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+
 import java.util.List;
 
 @Data
@@ -22,8 +23,9 @@ public class Customer {
     public String email;
     public String phone;
     public String address;
+    public String customerProfile;
     @Transient
-    public List<Account> accounts;
+    public List list;
 
     public Customer(){
         super();
@@ -31,20 +33,34 @@ public class Customer {
 
 
 
-    public Customer(String customerId, String email, String phone, String address) {
+    public Customer(String customerId, String email, String phone, String address, String customerProfile) {
         this.customerId = customerId;
         this.email = email;
         this.phone = phone;
         this.address = address;
+        this.customerProfile = customerProfile;
+    }
+
+    public Customer(List list) {
+        this.list = list;
+    }
+
+
+    /*
+    public Customer (List<Account> accounts, List<Credit> credits) {
+        this.accounts = accounts;
+        this.credits = credits;
     }
 
     public Customer(List<Account> accounts) {
         this.accounts = accounts;
     }
 
-    /*
-    @Transient
-    public Credit credit;
+    public Customer(List<Credit> credits) {
+        this.credits = credits;
+    }
+
+
     @Transient
     public Transaction transaction;*/
 

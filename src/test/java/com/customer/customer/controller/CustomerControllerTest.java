@@ -36,7 +36,7 @@ public class CustomerControllerTest {
 
     @BeforeAll
     public static void setup(){
-        customerMap.put("test",new Customer("1","danny@gmail.com","98989898","Ancon"));
+        //customerMap.put("test",new Customer("1","danny@gmail.com","98989898","Ancon"));
     }
 
     @Test

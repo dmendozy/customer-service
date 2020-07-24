@@ -12,8 +12,10 @@ public class CustomerMapper {
             if (c.getEmail() != null) customer.setEmail(c.getEmail());
             if (c.getPhone() != null) customer.setPhone(c.getPhone());
             if (c.getAddress() != null) customer.setAddress(c.getAddress());
-            if (c.getAccounts()!=null) customer.setAccounts(c.getAccounts());
+            if (c.getList()!=null) customer.setList(c.getList());
+           // if (c.getCredits()!=null) customer.setCredits(c.getCredits());
         }
         return customer;
     }
+
 }

@@ -7,5 +7,6 @@ public class Credit {
     public String creditId;
     public String numberCredit;
     public String typeAccount;
-    public double crediLimit;
+    public double creditLimit;
+    public String customerId;
 }
