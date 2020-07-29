@@ -1,8 +1,8 @@
 package com.customer.customer.model;
 
 import com.customer.customer.adds.Account;
+import com.customer.customer.adds.Bank;
 import com.customer.customer.adds.Credit;
-import com.customer.customer.adds.Transaction;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
@@ -20,48 +20,46 @@ public class Customer {
 
     @Id
     public String customerId;
+    public String customerCode;
+    public String customerProfile;
+    public String name;
+    public String documentType;
+    public String documentNumber;
     public String email;
     public String phone;
     public String address;
-    public String customerProfile;
     @Transient
-    public List list;
+    public List<Account> accounts;
+    @Transient
+    public List<Credit> credits;
+    @Transient
+    public List<Bank> banks;
 
     public Customer(){
         super();
     }
 
 
-
-    public Customer(String customerId, String email, String phone, String address, String customerProfile) {
+    public Customer(String customerId, String customerCode, String customerProfile, String name, String documentType, String documentNumber, String email, String phone, String address) {
         this.customerId = customerId;
+        this.customerCode = customerCode;
+        this.customerProfile = customerProfile;
+        this.name = name;
+        this.documentType = documentType;
+        this.documentNumber = documentNumber;
         this.email = email;
         this.phone = phone;
         this.address = address;
-        this.customerProfile = customerProfile;
-    }
-
-    public Customer(List list) {
-        this.list = list;
     }
 
 
-    /*
-    public Customer (List<Account> accounts, List<Credit> credits) {
-        this.accounts = accounts;
-        this.credits = credits;
+    public Customer(List<Account> accounts, List<Credit> credits) {
+        this.accounts=accounts;
+        this.credits=credits;
     }
 
-    public Customer(List<Account> accounts) {
-        this.accounts = accounts;
+    public Customer(Customer customer, List<Bank> banks) {
+        this(customer.getAccounts(),customer.getCredits());
+        this.banks=banks;
     }
-
-    public Customer(List<Credit> credits) {
-        this.credits = credits;
-    }
-
-
-    @Transient
-    public Transaction transaction;*/
-
 }

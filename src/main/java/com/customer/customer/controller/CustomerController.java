@@ -1,6 +1,7 @@
 package com.customer.customer.controller;
 
 import com.customer.customer.adds.Account;
+import com.customer.customer.adds.Bank;
 import com.customer.customer.adds.Credit;
 import com.customer.customer.model.Customer;
 import com.customer.customer.service.CustomerService;
@@ -14,6 +15,8 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,26 +57,33 @@ public class CustomerController {
         return customerService.delete(customerId);
     }
 
-    @GetMapping("/{id}/accounts")
-    public Mono<Customer> findByIdWithAccounts(@PathVariable("id") String id) {
-        Flux<Account> accounts = webClientBuilder.build().get().uri("http://account-service/accounts/customer/{customer}",id).retrieve().bodyToFlux(Account.class);
-        return accounts
-                .collectList()
-                .map(a -> new Customer(a))
+
+    @GetMapping("/profile/{id}")
+    public Mono<Customer> findCustomerProfile(@PathVariable("id") String id){
+        Flux<Account> accounts = webClientBuilder
+                .build()
+                .get()
+                .uri("http://account-service/accounts/customer/{customer}",id)
+                .retrieve()
+                .bodyToFlux(Account.class);
+        Flux<Credit> credits = webClientBuilder
+                .build()
+                .get()
+                .uri("http://credit-service/credits/customer/{customer}",id)
+                .retrieve()
+                .bodyToFlux(Credit.class);
+        Flux<Bank> banks = webClientBuilder
+                .build()
+                .get()
+                .uri("http://bank-service/banks/customer/{customer}",id)
+                .retrieve()
+                .bodyToFlux(Bank.class);
+        Mono<Customer> pre = accounts.collectList().zipWith(credits.collectList(), Customer::new);
+        Mono<Customer> mono = pre.zipWith(banks.collectList(), Customer::new);
+        return mono
                 .mergeWith(customerService.getById(id))
                 .collectList()
                 .map(CustomerMapper::map);
-    }
-
-    @GetMapping("/{id}/credits")
-    public Mono<Customer> findByIdWithProducts(@PathVariable("id") String id) {
-        Flux<Credit> credits = webClientBuilder.build().get().uri("http://credit-service/credits/customer/{customer}",id).retrieve().bodyToFlux(Credit.class);
-        Mono<Customer> monoCredit = credits.collectList().map(Customer::new);
-        return monoCredit
-                .mergeWith(customerService.getById(id))
-                .collectList()
-                .map(CustomerMapper::map);
-
     }
 
 

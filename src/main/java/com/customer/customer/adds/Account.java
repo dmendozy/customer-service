@@ -10,7 +10,7 @@ public class Account {
     public String numberAccount;
     public String typeAccount;
     public double currentBalance;
-    public int transactions;
+    public int transactionsAmount;
     public List<String> customerId;
     public List<String> signatories;
 }

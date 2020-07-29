@@ -9,4 +9,5 @@ public class Transaction {
     public double output;
     public double input;
     public String datetime;
+    public String accountId;
 }
