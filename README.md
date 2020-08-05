@@ -28,7 +28,7 @@ docker run -p 8090:8090 --name config-service config-service
 | HTTP Verb  |     `/customers`  |      `/customers/{customerId}`      |   
 | ---------- | :---------------: | :---------------: |
 | **POST**| ADD new customer | - |  
-| **GET**| GET all customers | 
+| **GET**| GET all customers | - |
 | **PUT**| - | EDIT customer by Id|  
 | **DELETE**| - |DELETE customer by Id|  
 
