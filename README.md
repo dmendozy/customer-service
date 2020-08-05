@@ -1,4 +1,4 @@
-Bootcamp-project2
+Atm service
 ======================
 # Getting Started
 This project is based on Spring Boot microservices using the reactive stack, read more info there https://spring.io/reactive
@@ -17,36 +17,31 @@ This project is based on Spring Boot microservices using the reactive stack, rea
 # Building
 ## Windows
 1. Install [Docker Desktop](https://www.docker.com/products/docker-desktop).
-2. Create an image for MongoDB
-```
-docker pull mongo:latest
-```
-3. Create a container for the database
-```
-docker run -d -p 27017:27017 --name bootcamp-mongodb mongo:latest
-```
-4. Check
-```
-docker ps
-```
-5. Clone each repository called project2-* in my profile
-6. Create each image and container using the following code:
+2. Create an image and container for atm-service using the following code:
 ```
 mvn install
-docker build -f Dockerfile -t customer-service
-docker run -p 8082:8082 --name customer-service customer-service
+docker build . -t config-service
+docker run -p 8090:8090 --name config-service config-service
 ```
-7. After create all images and container, use docker compose to start all services from project2-config
-```
-docker-compose up
-```
+# CRUD
+
+| HTTP Verb  |     `/customers`  |      `/customers/{customerId}`      |   
+| ---------- | :---------------: | :---------------: |
+| **POST**| ADD new customer | - |  
+| **GET**| GET all customers | 
+| **PUT**| - | EDIT customer by Id|  
+| **DELETE**| - |DELETE customer by Id|  
+
+
+# Operations
+| HTTP Verb  |           |            |                |                |
+| ---------- | :-----------------------------: | :-----------------------------: | :-------------------------------: | :------------------------------------: |
+| **GET**| GET deposit made from ATM in account  | GET withdraw made from ATM in accoun|  GET deposit made from ATM in account to other bank  |  GET withdraw made from ATM in account to other bank  |
 
 # Architecture
 
-![Architecture](https://raw.githubusercontent.com/dmendozy/project2-config/master/files/architecture.png)
+![Architecture](https://raw.githubusercontent.com/dmendozy/config-service/master/files/arch.png)
 
 # Authors
 
 * **Danny Mendoza Yenque** - *Everis Bootcamp Microservices July 2020* - [DannyMendoza](https://github.com/dmendozy)
-
-
