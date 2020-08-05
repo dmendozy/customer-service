@@ -1,5 +1,8 @@
 package com.customer.customer.controller;
 
+import com.customer.customer.adds.Account;
+import com.customer.customer.adds.Bank;
+import com.customer.customer.adds.Credit;
 import com.customer.customer.model.Customer;
 import com.customer.customer.repository.CustomerRepository;
 import com.customer.customer.service.CustomerService;
@@ -15,9 +18,13 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @ExtendWith(SpringExtension.class)
@@ -28,15 +35,15 @@ public class CustomerControllerTest {
     @MockBean
     CustomerRepository repository;
 
+
     @Autowired
     private WebTestClient webClient;
 
     final private static Map<String, Customer> customerMap = new HashMap<>();
 
-
     @BeforeAll
     public static void setup(){
-        //customerMap.put("test",new Customer("1","danny@gmail.com","98989898","Ancon"));
+        customerMap.put("test",new Customer("1","123123132","Personal","Danny Mendoza","DNI","79797979","danny@gmail.com","979797989","Ancon"));
     }
 
     @Test
@@ -102,4 +109,5 @@ public class CustomerControllerTest {
         Mockito.verify(repository, Mockito.times(1)).deleteById(customerMap.get("test").customerId);
 
     }
+    
 }
