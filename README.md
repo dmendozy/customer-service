@@ -1,4 +1,4 @@
-Atm service
+Customer service
 ======================
 # Getting Started
 This project is based on Spring Boot microservices using the reactive stack, read more info there https://spring.io/reactive
