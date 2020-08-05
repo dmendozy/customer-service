@@ -28,15 +28,16 @@ docker run -p 8090:8090 --name config-service config-service
 | HTTP Verb  |     `/customers`  |      `/customers/{customerId}`      |   
 | ---------- | :---------------: | :---------------: |
 | **POST**| ADD new customer | - |  
-| **GET**| GET all customers | - |
+| **GET**| GET all customers | GET customer by Id |
 | **PUT**| - | EDIT customer by Id|  
 | **DELETE**| - |DELETE customer by Id|  
 
 
 # Operations
-| HTTP Verb  |           |            |                |                |
-| ---------- | :-----------------------------: | :-----------------------------: | :-------------------------------: | :------------------------------------: |
-| **GET**| GET deposit made from ATM in account  | GET withdraw made from ATM in accoun|  GET deposit made from ATM in account to other bank  |  GET withdraw made from ATM in account to other bank  |
+| HTTP Verb  |     `/customers/profile/{customerId}`  |
+| ---------- | :---------------: |
+| **GET**| GET a detailed customer profile |
+
 
 # Architecture
 
