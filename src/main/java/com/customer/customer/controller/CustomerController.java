@@ -9,16 +9,10 @@ import com.customer.customer.utils.CustomerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 
 @RestController
@@ -63,19 +57,19 @@ public class CustomerController {
         Flux<Account> accounts = webClientBuilder
                 .build()
                 .get()
-                .uri("http://account-service/accounts/customer/{customer}",id)
+                .uri("http://localhost:8080/accounts/customer/{customer}",id)
                 .retrieve()
                 .bodyToFlux(Account.class);
         Flux<Credit> credits = webClientBuilder
                 .build()
                 .get()
-                .uri("http://credit-service/credits/customer/{customer}",id)
+                .uri("http://localhost:8080/credits/customer/{customer}",id)
                 .retrieve()
                 .bodyToFlux(Credit.class);
         Flux<Bank> banks = webClientBuilder
                 .build()
                 .get()
-                .uri("http://bank-service/banks/customer/{customer}",id)
+                .uri("http://localhost:8080/banks/customer/{customer}",id)
                 .retrieve()
                 .bodyToFlux(Bank.class);
         Mono<Customer> pre = accounts.collectList().zipWith(credits.collectList(), Customer::new);
