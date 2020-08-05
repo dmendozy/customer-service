@@ -14,7 +14,6 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 
-
 @RestController
 @RequestMapping("/customers")
 public class CustomerController {
@@ -26,50 +25,50 @@ public class CustomerController {
     CustomerService customerService;
 
     @GetMapping
-    public Flux<Customer> getAllCustomers(){
+    public Flux<Customer> getAllCustomers() {
         return customerService.getAll();
     }
 
     @GetMapping("{id}")
-    public Mono<Customer> getCustomerById(@PathVariable("id") String customerId){
+    public Mono<Customer> getCustomerById(@PathVariable("id") String customerId) {
         return customerService.getById(customerId);
     }
 
     @PostMapping
-    public Mono<Customer> createCustomer(@Validated @RequestBody Customer customer){
+    public Mono<Customer> createCustomer(@Validated @RequestBody Customer customer) {
         return customerService.save(customer);
     }
 
     @PutMapping("{id}")
     public Mono<Customer> updateCustomer(@PathVariable("id") String customerId,
-                                         @Validated @RequestBody Customer customer){
+                                         @Validated @RequestBody Customer customer) {
         return customerService.update(customerId, customer);
     }
 
     @DeleteMapping("{id}")
-    public Mono<Customer> deleteCustomer(@PathVariable("id") String customerId){
+    public Mono<Customer> deleteCustomer(@PathVariable("id") String customerId) {
         return customerService.delete(customerId);
     }
 
 
     @GetMapping("/profile/{id}")
-    public Mono<Customer> findCustomerProfile(@PathVariable("id") String id){
+    public Mono<Customer> findCustomerProfile(@PathVariable("id") String id) {
         Flux<Account> accounts = webClientBuilder
                 .build()
                 .get()
-                .uri("http://localhost:8080/accounts/customer/{customer}",id)
+                .uri("http://localhost:8080/accounts/customer/{customer}", id)
                 .retrieve()
                 .bodyToFlux(Account.class);
         Flux<Credit> credits = webClientBuilder
                 .build()
                 .get()
-                .uri("http://localhost:8080/credits/customer/{customer}",id)
+                .uri("http://localhost:8080/credits/customer/{customer}", id)
                 .retrieve()
                 .bodyToFlux(Credit.class);
         Flux<Bank> banks = webClientBuilder
                 .build()
                 .get()
-                .uri("http://localhost:8080/banks/customer/{customer}",id)
+                .uri("http://localhost:8080/banks/customer/{customer}", id)
                 .retrieve()
                 .bodyToFlux(Bank.class);
         Mono<Customer> pre = accounts.collectList().zipWith(credits.collectList(), Customer::new);
@@ -79,7 +78,6 @@ public class CustomerController {
                 .collectList()
                 .map(CustomerMapper::map);
     }
-
 
 
 }
