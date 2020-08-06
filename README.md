@@ -17,11 +17,11 @@ This project is based on Spring Boot microservices using the reactive stack, rea
 # Building
 ## Windows
 1. Install [Docker Desktop](https://www.docker.com/products/docker-desktop).
-2. Create an image and container for atm-service using the following code:
+2. Create an image and container for customer-service using the following code:
 ```
 mvn install
-docker build . -t config-service
-docker run -p 8090:8090 --name config-service config-service
+docker build . -t customer-service
+docker run -p 8082:8082 --name customer-service customer-service
 ```
 # CRUD
 
