@@ -56,19 +56,19 @@ public class CustomerController {
         Flux<Account> accounts = webClientBuilder
                 .build()
                 .get()
-                .uri("http://localhost:8080/accounts/customer/{customer}", id)
+                .uri("http://account-service/accounts/customer/{customer}", id)
                 .retrieve()
                 .bodyToFlux(Account.class);
         Flux<Credit> credits = webClientBuilder
                 .build()
                 .get()
-                .uri("http://localhost:8080/credits/customer/{customer}", id)
+                .uri("http://credit-service/credits/customer/{customer}", id)
                 .retrieve()
                 .bodyToFlux(Credit.class);
         Flux<Bank> banks = webClientBuilder
                 .build()
                 .get()
-                .uri("http://localhost:8080/banks/customer/{customer}", id)
+                .uri("http://bank-service/banks/customer/{customer}", id)
                 .retrieve()
                 .bodyToFlux(Bank.class);
         Mono<Customer> pre = accounts.collectList().zipWith(credits.collectList(), Customer::new);
